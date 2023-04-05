@@ -2,6 +2,8 @@ import 'package:chat_app/ui/add_room/add_room_screen.dart';
 import 'package:chat_app/ui/base/base.dart';
 import 'package:chat_app/ui/home/home_view_model.dart';
 import 'package:chat_app/ui/home/room_widget.dart';
+import 'package:chat_app/ui/login/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +40,14 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.pushNamed(context, LoginScreen.routeName);
+                  },
+                  icon: Icon(Icons.logout))
+            ],
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: const Text('Home'),
